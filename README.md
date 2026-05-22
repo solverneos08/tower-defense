@@ -2,6 +2,12 @@
 
 Browser-based tower defense with 9 tower types, dynamic maze pathing (A*), and 3 upgrade tiers each.
 
+## Play online
+
+**https://solverneos08.github.io/tower-defense/**
+
+(Source: [github.com/solverneos08/tower-defense](https://github.com/solverneos08/tower-defense))
+
 ## Run locally
 
 You need a local HTTP server (ES modules won't load from `file://`).
