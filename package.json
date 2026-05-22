@@ -1,0 +1,9 @@
+{
+  "name": "tower-defense",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve -l 3000",
+    "dev": "npx --yes serve -l 3000"
+  }
+}
