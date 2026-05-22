@@ -31,6 +31,12 @@ export function leftSpawnCenter() {
   return [LEFT_NOBUILD_COLS[0], midRow];
 }
 
+/** Right no-build zone: centre row, rightmost column (col 25, row 7 on default grid). */
+export function rightSpawnCenter() {
+  const midRow = NOBUILD_ROWS[Math.floor(NOBUILD_ROWS.length / 2)];
+  return [RIGHT_NOBUILD_COLS[RIGHT_NOBUILD_COLS.length - 1], midRow];
+}
+
 export function rightGoalCells() {
   const out = [];
   for (const r of NOBUILD_ROWS)

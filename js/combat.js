@@ -1,4 +1,5 @@
 import { findPathReverse } from './pathfinder.js';
+import { cellCenter, rightSpawnCenter } from './map.js';
 import { chainTargets, enemiesInRadius, nearestEnemyInRange } from './targeting.js';
 import { Drone, setupHeli } from './entities.js';
 import { spawnExplosion } from './sprites.js';
@@ -56,7 +57,17 @@ export function updateCombat(state, dt, gameTime) {
       if (t.spawnTimer <= 0) {
         const path = findPathReverse(state.towerCells);
         if (path.length) {
-          state.drones.push(new Drone(path, s.drone_speed, s.drone_damage, s.boom_radius));
+          const drone = new Drone(path, s.drone_speed, s.drone_damage, s.boom_radius);
+          const [sc, sr] = rightSpawnCenter();
+          drone.pos = cellCenter(sc, sr);
+          drone.pathIndex = 0;
+          for (let i = 0; i < path.length; i++) {
+            if (path[i][0] === sc && path[i][1] === sr) {
+              drone.pathIndex = i;
+              break;
+            }
+          }
+          state.drones.push(drone);
         }
         t.spawnTimer = s.spawn_interval;
       }

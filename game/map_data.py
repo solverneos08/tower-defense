@@ -41,6 +41,12 @@ def left_spawn_center() -> tuple[int, int]:
     return LEFT_NOBUILD_COLS[0], mid_row
 
 
+def right_spawn_center() -> tuple[int, int]:
+    """Centre tile of right no-build zone (rightmost col, middle row)."""
+    mid_row = NOBUILD_ROWS[len(NOBUILD_ROWS) // 2]
+    return RIGHT_NOBUILD_COLS[-1], mid_row
+
+
 def right_goal_cells() -> list[tuple[int, int]]:
     return [(c, r) for r in NOBUILD_ROWS for c in RIGHT_NOBUILD_COLS]
 

@@ -129,9 +129,19 @@ def update_combat(state, dt: float, game_time: float, audio):
                 s = t.stats
                 path = find_path_reverse(state.tower_cells)
                 if path:
-                    state.drones.append(
-                        Drone(path, s["drone_speed"], s["drone_hp"], s["drone_damage"], s["boom_radius"])
+                    from game.map_data import cell_center, right_spawn_center
+
+                    drone = Drone(
+                        path, s["drone_speed"], s["drone_hp"], s["drone_damage"], s["boom_radius"]
                     )
+                    sc, sr = right_spawn_center()
+                    drone.pos = cell_center(sc, sr)
+                    drone.path_index = 0
+                    for i, c in enumerate(path):
+                        if c == (sc, sr):
+                            drone.path_index = i
+                            break
+                    state.drones.append(drone)
                 t.spawn_timer = s["spawn_interval"]
             continue
 
