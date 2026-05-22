@@ -1,5 +1,5 @@
 import { WAVES } from './config.js';
-import { cellCenter } from './map.js';
+import { cellCenter, leftSpawnCenter } from './map.js';
 import { makeEnemy } from './entities.js';
 
 export class WaveManager {
@@ -40,10 +40,15 @@ export class WaveManager {
       console.warn('No path — recompute failed');
       return enemy;
     }
-    // Spawn on first path cell (left spawn zone)
-    const [sc, sr] = path[0];
+    const [sc, sr] = leftSpawnCenter();
     enemy.pos = cellCenter(sc, sr);
     enemy.pathIndex = 0;
+    for (let i = 0; i < path.length; i++) {
+      if (path[i][0] === sc && path[i][1] === sr) {
+        enemy.pathIndex = i;
+        break;
+      }
+    }
     return enemy;
   }
 

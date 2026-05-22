@@ -4,7 +4,7 @@ import random
 
 from game.config import WAVES
 from game.entities.enemy import make_enemy_for_wave
-from game.map_data import left_spawn_cells
+from game.map_data import left_spawn_center
 
 
 class WaveManager:
@@ -43,7 +43,7 @@ class WaveManager:
             enemy = make_enemy_for_wave(kind, state.wave_index)
             path = state.global_path
             if path:
-                spawn = random.choice(left_spawn_cells())
+                spawn = left_spawn_center()
                 from game.map_data import cell_center
 
                 enemy.pos = cell_center(spawn[0], spawn[1])

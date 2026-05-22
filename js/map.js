@@ -25,6 +25,12 @@ export function leftSpawnCells() {
   return out;
 }
 
+/** Left no-build zone: centre row, leftmost column (col 0, row 7 on default grid). */
+export function leftSpawnCenter() {
+  const midRow = NOBUILD_ROWS[Math.floor(NOBUILD_ROWS.length / 2)];
+  return [LEFT_NOBUILD_COLS[0], midRow];
+}
+
 export function rightGoalCells() {
   const out = [];
   for (const r of NOBUILD_ROWS)
